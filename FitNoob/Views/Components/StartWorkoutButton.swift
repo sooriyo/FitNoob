@@ -14,9 +14,9 @@ struct StartWorkoutButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Image(systemName: isStarted ? "pause.fill" : "play.fill")
+                Image(systemName: isStarted ? "xmark" : "play.fill")
                     .font(.system(size: 16, weight: .bold))
-                Text(isStarted ? "Pause Workout" : "Start Workout")
+                Text(isStarted ? "End Workout" : "Start Workout")
                     .font(.system(size: 16, weight: .bold))
             }
             .foregroundColor(.black)

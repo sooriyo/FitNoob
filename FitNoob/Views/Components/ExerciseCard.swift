@@ -1,10 +1,3 @@
-//
-//  ExerciseCard 2.swift
-//  FitNoob
-//
-//  Created by Tharuka Sooriyaarachchi on 11/28/25.
-//
-
 import SwiftUI
 
 struct EnhancedExerciseCard: View {

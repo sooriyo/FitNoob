@@ -27,4 +27,9 @@ class ScheduleViewModel: ObservableObject {
         let completed = session.workingSets.filter { completedExercises.contains($0.id) }.count
         return Double(completed) / Double(session.workingSets.count)
     }
+    
+    func resetWorkout() {
+        completedExercises.removeAll()
+        isWorkoutStarted = false
+    }
 }

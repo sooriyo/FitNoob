@@ -1,14 +1,8 @@
-//
-//  WorkoutHeaderView.swift
-//  FitNoob
-//
-//  Created by Tharuka Sooriyaarachchi on 11/28/25.
-//
-
 import SwiftUI
 
 struct WorkoutHeaderView: View {
     let session: WorkoutSession
+    let progress: Double
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -21,9 +15,23 @@ struct WorkoutHeaderView: View {
                         .foregroundColor(.gray)
                 }
                 Spacer()
-                Image(systemName: "calendar")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white.opacity(0.6))
+                
+                // Circular Progress
+                ZStack {
+                    Circle()
+                        .stroke(Color.white.opacity(0.1), lineWidth: 4)
+                        .frame(width: 50, height: 50)
+                    
+                    Circle()
+                        .trim(from: 0, to: progress)
+                        .stroke(Color.green, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                        .frame(width: 50, height: 50)
+                        .rotationEffect(.degrees(-90))
+                    
+                    Text("\(Int(progress * 100))%")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.green)
+                }
             }
             
             Text(session.description)
