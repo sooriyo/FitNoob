@@ -1,15 +1,14 @@
+// WorkoutDashboardView.swift
+// FitNoob
 //
-//  HomeView.swift
-//  FitNoob
+// Created by Tharuka Sooriyaarachchi on 11/29/25.
 //
-//  Created by Tharuka Sooriyaarachchi on 11/29/25.
-//
-
 
 import SwiftUI
 
-struct HomeView: View {
+struct WorkoutDashboardView: View {
     @StateObject private var viewModel = ScheduleViewModel()
+    @State private var showManageMenu = false
     
     var body: some View {
         ZStack {
@@ -20,9 +19,31 @@ struct HomeView: View {
                     .transition(.move(edge: .bottom))
             } else {
                 VStack(spacing: 0) {
+                    // Header
+                    HStack {
+                        Text("Workout")
+                            .font(.system(size: 34, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            showManageMenu.toggle()
+                        }) {
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 18, weight: .semibold))
+                                .foregroundColor(.white)
+                                .frame(width: 44, height: 44)
+                                .background(Color.white.opacity(0.15))
+                                .clipShape(Circle())
+                        }
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
+                    .padding(.bottom, 16)
+                    
                     // Content
                     if let session = viewModel.getWorkout(for: viewModel.selectedDay) {
-                        let progress = viewModel.getCompletionProgress(for: session)
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack(spacing: 24) {
@@ -64,5 +85,8 @@ struct HomeView: View {
             }
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.8), value: viewModel.isWorkoutStarted)
+        .fullScreenCover(isPresented: $showManageMenu) {
+            ManageWorkoutSheet()
+        }
     }
 }
