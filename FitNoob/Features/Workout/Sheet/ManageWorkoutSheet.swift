@@ -7,6 +7,7 @@ import SwiftUI
 struct ManageWorkoutSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var showCreateSchedule = false
+    @State private var showScheduleHistory = false
     @State private var showRestDays = false
     @State private var showInjuries = false
     @State private var showProgress = false
@@ -20,7 +21,7 @@ struct ManageWorkoutSheet: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 HStack {
-                    Text("Manage Workout")
+                    Text("Workout")
                         .font(.system(size: 34, weight: .bold))
                         .foregroundColor(AppColors.text)
                     
@@ -44,13 +45,26 @@ struct ManageWorkoutSheet: View {
                 // Menu Options
                 ScrollView {
                     VStack(spacing: 0) {
-                        // Edit Schedule
+                        // New Schedule
                         MenuButton(
-                            icon: "calendar.badge.clock",
-                            title: "Manage Schedule",
-                            subtitle: "Modify your workout plan"
+                            icon: "plus.circle.fill",
+                            title: "New Schedule",
+                            subtitle: "Create a new workout plan"
                         ) {
                             showCreateSchedule = true
+                        }
+                        
+                        Divider()
+                            .background(AppColors.surfaceLight)
+                            .padding(.horizontal, 24)
+                        
+                        // Schedule History
+                        MenuButton(
+                            icon: "calendar.badge.clock",
+                            title: "Schedule History",
+                            subtitle: "View your past workout plans"
+                        ) {
+                            showScheduleHistory = true
                         }
                         
                         Divider()
@@ -125,6 +139,9 @@ struct ManageWorkoutSheet: View {
         // Sheet presentations
         .fullScreenCover(isPresented: $showCreateSchedule) {
             CreateScheduleView()
+        }
+        .sheet(isPresented: $showScheduleHistory) {
+            PastSchedulesView()
         }
         .sheet(isPresented: $showRestDays) {
             // RestDaysView()

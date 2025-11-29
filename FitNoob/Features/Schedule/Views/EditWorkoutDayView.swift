@@ -21,64 +21,76 @@ struct EditWorkoutDayView: View {
                 // Header
                 HStack {
                     Button(action: { dismiss() }) {
-                        Text("Done")
-                            .font(.system(size: 17, weight: .semibold))
+                        Image(systemName: "chevron.down")
+                            .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(AppColors.text)
+                            .frame(width: 44, height: 44)
+                            .background(AppColors.surfaceLight)
+                            .clipShape(Circle())
                     }
                     
                     Spacer()
                     
                     Text(workoutDay.dayOfWeek.fullName)
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(AppColors.text)
                     
                     Spacer()
                     
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(AppColors.text)
+                            .frame(width: 44, height: 44)
+                            .background(AppColors.surfaceLight)
+                            .clipShape(Circle())
+                    }
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
-                        // Workout Name
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Workout Name")
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundColor(AppColors.text)
-                            
-                            TextField("e.g., Push Day, Leg Day", text: $workoutDay.name)
-                                .font(.system(size: 17))
-                                .foregroundColor(AppColors.text)
-                                .padding()
-                                .background(AppColors.surfaceLight)
-                                .cornerRadius(12)
-                        }
-                        
                         // Exercises Section
                         VStack(alignment: .leading, spacing: 16) {
                             HStack {
-                                Text("Exercises")
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .foregroundColor(AppColors.text)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Exercises")
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundColor(AppColors.text)
+                                    
+                                    Text("Add exercises for this day")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
                                 
                                 Spacer()
                                 
                                 Text("\(workoutDay.exercises.count)")
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(.system(size: 14, weight: .semibold))
                                     .foregroundColor(AppColors.textSecondary)
                             }
                             
                             if workoutDay.exercises.isEmpty {
-                                Text("No exercises added yet")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(AppColors.textSecondary)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 32)
+                                VStack(spacing: 12) {
+                                    Image(systemName: "dumbbell.fill")
+                                        .font(.system(size: 32))
+                                        .foregroundColor(AppColors.textSecondary)
+                                    
+                                    Text("No exercises yet")
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundColor(AppColors.text)
+                                    
+                                    Text("Add your first exercise to get started")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 32)
                             } else {
                                 VStack(spacing: 12) {
                                     ForEach(workoutDay.exercises) { exercise in
                                         ExerciseRow(exercise: exercise) {
-                                            // Delete exercise
                                             workoutDay.exercises.removeAll { $0.id == exercise.id }
                                         }
                                     }
@@ -102,9 +114,15 @@ struct EditWorkoutDayView: View {
                         
                         // Cardio Section
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Cardio")
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundColor(AppColors.text)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Cardio")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .foregroundColor(AppColors.text)
+                                
+                                Text("Add cardio activity (optional)")
+                                    .font(.system(size: 13))
+                                    .foregroundColor(AppColors.textSecondary)
+                            }
                             
                             if let cardio = workoutDay.cardio {
                                 CardioRow(cardio: cardio) {
