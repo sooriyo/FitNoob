@@ -76,14 +76,14 @@ struct ActiveWorkoutView: View {
                             }
                             
                             VStack(spacing: 12) {
-                                ForEach(session.workingSets) { exercise in
-                                    EnhancedExerciseCard(
-                                        exercise: exercise,
-                                        isCompleted: viewModel.isExerciseCompleted(exercise.id)
-                                    ) {
-                                        viewModel.toggleExerciseCompletion(exercise.id)
-                                    }
-                                }
+//                                ForEach(session.workingSets) { exercise in
+//                                    EnhancedExerciseCard(
+//                                        exercise: exercise,
+//                                        isCompleted: viewModel.isExerciseCompleted(exercise.id)
+//                                    ) {
+//                                        viewModel.toggleExerciseCompletion(exercise.id)
+//                                    }
+//                                }
                             }
                         }
                         .padding(.horizontal, 24)

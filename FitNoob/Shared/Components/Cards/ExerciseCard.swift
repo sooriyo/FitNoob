@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct EnhancedExerciseCard: View {
-    let exercise: Exercise
+struct ExerciseCard: View {
+    let exercise: WorkoutExercise
     let isCompleted: Bool
     let onToggle: () -> Void
     
@@ -23,7 +23,7 @@ struct EnhancedExerciseCard: View {
                 
                 // Exercise Details
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(exercise.name)
+                    Text(exercise.exerciseName)
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -35,7 +35,7 @@ struct EnhancedExerciseCard: View {
                         Label(exercise.reps, systemImage: "repeat")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.gray)
-                        Label(exercise.rest, systemImage: "clock")
+                        Label("\(exercise.restTime)s", systemImage: "clock")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.gray)
                     }

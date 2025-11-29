@@ -1,15 +1,18 @@
 //
 //  ManageWorkoutSheet.swift
 //  FitNoob
-//
-//  Created by Tharuka Sooriyaarachchi on 11/29/25.
-//
 
 import SwiftUI
 
 struct ManageWorkoutSheet: View {
     @Environment(\.dismiss) var dismiss
-    
+    @State private var showCreateSchedule = false
+    @State private var showRestDays = false
+    @State private var showInjuries = false
+    @State private var showProgress = false
+    @State private var showSettings = false
+    @State private var showResetConfirmation = false
+
     var body: some View {
         ZStack {
             AppColors.background.ignoresSafeArea()
@@ -44,10 +47,10 @@ struct ManageWorkoutSheet: View {
                         // Edit Schedule
                         MenuButton(
                             icon: "calendar.badge.clock",
-                            title: "Edit Schedule",
+                            title: "Manage Schedule",
                             subtitle: "Modify your workout plan"
                         ) {
-                            // Navigate to edit schedule
+                            showCreateSchedule = true
                         }
                         
                         Divider()
@@ -60,7 +63,7 @@ struct ManageWorkoutSheet: View {
                             title: "Rest Days",
                             subtitle: "Set your recovery days"
                         ) {
-                            // Navigate to rest days
+                            showRestDays = true
                         }
                         
                         Divider()
@@ -73,7 +76,7 @@ struct ManageWorkoutSheet: View {
                             title: "Record Injuries",
                             subtitle: "Track and manage injuries"
                         ) {
-                            // Navigate to injuries tracking
+                            showInjuries = true
                         }
                         
                         Divider()
@@ -86,7 +89,7 @@ struct ManageWorkoutSheet: View {
                             title: "Progress History",
                             subtitle: "View your workout stats"
                         ) {
-                            // Navigate to progress history
+                            showProgress = true
                         }
                         
                         Divider()
@@ -99,7 +102,7 @@ struct ManageWorkoutSheet: View {
                             title: "Workout Settings",
                             subtitle: "Customize your preferences"
                         ) {
-                            // Navigate to settings
+                            showSettings = true
                         }
                         
                         Divider()
@@ -112,56 +115,36 @@ struct ManageWorkoutSheet: View {
                             title: "Reset Progress",
                             subtitle: "Start fresh with a new plan"
                         ) {
-                            // Show reset confirmation
+                            showResetConfirmation = true
                         }
                     }
                     .padding(.vertical, 8)
                 }
             }
         }
-    }
-}
-
-// MARK: - Menu Button Component
-struct MenuButton: View {
-    let icon: String
-    let title: String
-    let subtitle: String
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 16) {
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(AppColors.text)
-                    .frame(width: 40, height: 40)
-                    .background(AppColors.surfaceLight)
-                    .clipShape(Circle())
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(AppColors.text)
-                    Text(subtitle)
-                        .font(.system(size: 14))
-                        .foregroundColor(AppColors.textSecondary)
-                }
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(AppColors.textSecondary)
-            }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 16)
-            .contentShape(Rectangle())
+        // Sheet presentations
+        .fullScreenCover(isPresented: $showCreateSchedule) {
+            CreateScheduleView()
         }
-        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showRestDays) {
+            // RestDaysView()
+            Text("Rest Days - Coming Soon")
+        }
+        .sheet(isPresented: $showInjuries) {
+            // InjuriesTrackingView()
+            Text("Injuries Tracking - Coming Soon")
+        }
+        .sheet(isPresented: $showProgress) {
+            // ProgressHistoryView()
+            Text("Progress History - Coming Soon")
+        }
+        .sheet(isPresented: $showSettings) {
+            // WorkoutSettingsView()
+            Text("Workout Settings - Coming Soon")
+        }
+        .sheet(isPresented: $showResetConfirmation) {
+            // ResetProgressView()
+            Text("Reset Progress - Coming Soon")
+        }
     }
-}
-
-#Preview {
-    ManageWorkoutSheet()
 }
