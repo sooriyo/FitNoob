@@ -8,11 +8,9 @@ struct WorkoutHeaderView: View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(session.title)
+                    Text(session.title.isEmpty ? session.day : session.day)
                         .font(.system(size: 28, weight: .bold))
-                    Text(session.date)
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.gray)
+                        .foregroundColor(AppColors.text)
                 }
                 Spacer()
                 
@@ -40,10 +38,10 @@ struct WorkoutHeaderView: View {
                 .lineLimit(3)
             
             HStack(spacing: 8) {
-                Image(systemName: "clock.fill")
+                Image(systemName: "day.fill")
                     .font(.system(size: 12))
                     .foregroundColor(.white.opacity(0.6))
-                Text(session.timeRange)
+                Text(session.date)
                     .font(.system(size: 13, weight: .medium))
             }
             .padding(.horizontal, 12)

@@ -20,42 +20,14 @@ struct HomeView: View {
                     .transition(.move(edge: .bottom))
             } else {
                 VStack(spacing: 0) {
-                    // Header
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("FitNoob")
-                            .font(.system(size: 36, weight: .bold))
-                            .tracking(0.5)
-                        Text("Your gym companion")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundColor(.gray)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 24)
-                    .padding(.top, 24)
-                    .padding(.bottom, 16)
-                    
-                    // Day Selector
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
-                            ForEach(AppConstants.days, id: \.self) { day in
-                                DayButton(
-                                    day: day,
-                                    isSelected: viewModel.selectedDay == day,
-                                    action: { viewModel.selectedDay = day }
-                                )
-                            }
-                        }
-                        .padding(.horizontal, 24)
-                    }
-                    .padding(.vertical, 16)
-                    
                     // Content
                     if let session = viewModel.getWorkout(for: viewModel.selectedDay) {
                         let progress = viewModel.getCompletionProgress(for: session)
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack(spacing: 24) {
-                                WorkoutHeaderView(session: session, progress: progress)
+                                // Swipable Cards
+                                SwipableCardsView(viewModel: viewModel)
                                     .padding(.horizontal, 24)
                                 
                                 // Start Button
@@ -69,17 +41,16 @@ struct HomeView: View {
                                 // Stats Cards
                                 HStack(spacing: 12) {
                                     StatCard(
-                                        icon: "flame.fill",
-                                        title: "Calories",
-                                        value: "\(session.estimatedCalories)",
-                                        color: .orange
-                                    )
-                                    
-                                    StatCard(
                                         icon: "figure.walk",
                                         title: "Steps",
                                         value: "\(session.estimatedSteps)",
-                                        color: .blue
+                                        color: .white
+                                    )
+                                    StatCard(
+                                        icon: "flame.fill",
+                                        title: "Calories",
+                                        value: "\(session.estimatedCalories)",
+                                        color: .white
                                     )
                                 }
                                 .padding(.horizontal, 24)

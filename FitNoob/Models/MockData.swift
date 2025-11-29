@@ -86,5 +86,37 @@ let workoutSchedule: [WorkoutSession] = [
         finisher: "Bicep burnout with light dumbbells",
         estimatedCalories: 340,
         estimatedSteps: 2000
+    ),
+    WorkoutSession(
+        day: "Saturday",
+        date: "Dec 20",
+        timeRange: "5:30 – 7:00 PM",
+        title: "Pull Day",
+        description: "Upper body pull workout. Back and biceps focus.",
+        warmUp: ["5 min rowing", "Band stretches"],
+        workingSets: [
+            Exercise(name: "Pull-ups", sets: 4, reps: "8–10", rest: "120s"),
+            Exercise(name: "Barbell Row", sets: 4, reps: "10–12", rest: "90s"),
+            Exercise(name: "Hammer Curls", sets: 3, reps: "12–15", rest: "60s")
+        ],
+        finisher: "Bicep burnout with light dumbbells",
+        estimatedCalories: 340,
+        estimatedSteps: 2000
+    ),
+    WorkoutSession(
+        day: "Sunday",
+        date: "Dec 20",
+        timeRange: "5:30 – 7:00 PM",
+        title: "Pull Day",
+        description: "Upper body pull workout. Back and biceps focus.",
+        warmUp: ["5 min rowing", "Band stretches"],
+        workingSets: [
+            Exercise(name: "Pull-ups", sets: 4, reps: "8–10", rest: "120s"),
+            Exercise(name: "Barbell Row", sets: 4, reps: "10–12", rest: "90s"),
+            Exercise(name: "Hammer Curls", sets: 3, reps: "12–15", rest: "60s")
+        ],
+        finisher: "Bicep burnout with light dumbbells",
+        estimatedCalories: 340,
+        estimatedSteps: 2000
     )
 ]

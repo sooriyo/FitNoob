@@ -29,9 +29,33 @@
 		2E92538B2EDA0604002E7466 /* FitNoobUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNoobUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2EB73E412EDA2D7600D6C575 /* Exceptions for "FitNoob" folder in "FitNoob" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Utilities/RelativeDate.swift,
+			);
+			target = 2E9253712EDA0603002E7466 /* FitNoob */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		2EB73E422EDA2D7600D6C575 /* Exceptions for "FitNoob" folder in "Copy Bundle Resources" phase from "FitNoob" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 2E9253702EDA0603002E7466 /* Resources */;
+			membershipExceptions = (
+				Utilities/RelativeDate.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2E9253742EDA0603002E7466 /* FitNoob */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2EB73E412EDA2D7600D6C575 /* Exceptions for "FitNoob" folder in "FitNoob" target */,
+				2EB73E422EDA2D7600D6C575 /* Exceptions for "FitNoob" folder in "Copy Bundle Resources" phase from "FitNoob" target */,
+			);
 			path = FitNoob;
 			sourceTree = "<group>";
 		};
